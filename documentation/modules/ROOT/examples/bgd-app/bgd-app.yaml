@@ -2,19 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: bgd-app
-  namespace: openshift-gitops
+  namespace: user1-argo-workshop
 spec:
   destination:
-    namespace: bgd
+    namespace: user1-argo-workshop
     server: https://kubernetes.default.svc
   project: default
   source:
     path: apps/bgd/overlays/bgd
-    repoURL: https://github.com/redhat-developer-demos/openshift-gitops-examples
-    targetRevision: main
+    repoURL: https://github.com/thoraxe/openshift-gitops-examples
+    targetRevision: rhpds-workshop
   syncPolicy:
     automated:
       prune: true
       selfHeal: false
-    syncOptions:
-    - CreateNamespace=true
